@@ -19,6 +19,7 @@
 # !/usr/bin/env python
 # -*- coding: UTF-8 -*-
 import os
+import pickle
 import shutil
 
 import jieba
@@ -38,6 +39,19 @@ def read_file(file_path):
         content = fp.readlines()
         # print(content)
     return str(content)
+
+
+# 读取bunch对象
+def read_bunch(file_path):
+    with open(file_path, "rb") as fp:
+        bunch_obj = pickle.load(fp)
+    return bunch_obj
+
+
+# 写入bunch对象
+def write_bunch(file_path, bunch_obj):
+    with open(file_path, "wb") as fp:
+        pickle.dump(bunch_obj, fp)
 
 
 # 抽取测试集的主题关键词

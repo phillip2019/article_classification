@@ -5,17 +5,13 @@ import pickle
 
 from sklearn.utils import Bunch
 
+from cut_words import read_file, write_bunch
+
 '''
 label: 文章类型
 file_path: 文章路径
 contents: 分词后的文章
 '''
-
-
-def read_file(file_path):
-    with open(file_path, "r", encoding='utf-8', errors='ignore') as fp:
-        content = fp.readlines()
-    return str(content)
 
 
 def word_to_bunch(_train_save_path, _train_bunch_path):
@@ -33,8 +29,8 @@ def word_to_bunch(_train_save_path, _train_bunch_path):
             bunch.filepath.append(file_detail_path)
             contents = read_file(file_detail_path)
             bunch.contents.append(contents)
-    with open(_train_bunch_path, "wb+") as fp:
-        pickle.dump(bunch, fp)
+
+    write_bunch(_train_bunch_path, bunch)
     print("创建完成")
 
 
